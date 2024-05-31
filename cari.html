@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Change 2O</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="icon" href="assets/images/logo-grafis.png" type="image/gif" sizes="16x16">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap4.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .main-orange-button:hover {
+        background-color: #04AA6D; /* Green */
+        /* color: white; */
+      }
+        .full-height {
+            min-height: 100vh;
+        }
+
+        #contentPage4 {
+            /* margin-top: 100px; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }  
+
+        .custom-show {
+            display: flex;
+            justify-content: start;
+        }
+          
+        .custom-page {
+            display: flex;
+            justify-content: end;
+        }
+          
+        .custom-table {
+            width: 100% !important;
+        }
+
+        @media (max-width: 767px) {
+            #contentPage4 {
+                margin-top: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+            .custom-show {
+                display: block;
+            }
+            .custom-page {
+                display: block;
+                width: 100% !important;
+            }
+          
+            .custom-table {
+                width: 85% !important;
+            }
+            
+        }
+    </style>
+  </head>
+
+<body>
+
+    <div>
+        <!-- BEGIN :: NAVBAR-->
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky slideInDown" data-wow-duration="0.75s" data-wow-delay="0s" style="position: fixed;">
+            <div class="container">
+            <div class="row">
+                <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                    <h4 style="color:#032449">Change2<span><img src="assets/svg/logo-1.svg" style="width: 40px;"></span></h4>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="index.html">Beranda</a></li>
+                        <li class="scroll-to-section" style="padding-right: 200px;"><a href="page3.html">Kompos</a></li>
+                        <li class="scroll-to-section d-md-none"><a href="cari.html">Cari Jenis Sampah</a></li>
+                        <li class="scroll-to-section">
+                            <div class="main-white-button">
+                                <a href="cari.html" style="color: black;">
+                                    <img src="assets/svg/search-icon.svg" style="width: 20px;">
+                                    Cari Jenis Sampah
+                                </a>
+                            </div>
+                        </li> 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+                </div>
+            </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+        <!-- END :: NAVBAR-->
+
+        <div class="section text-white" data-wow-duration="1s" data-wow-delay="0.5s">
+            <div class="pb-3" style="background-color: #3C592E">
+                <div class="container d-flex align-items-center justify-content-center full-height" style="margin-top: 80px;">
+                    <center>
+                        <div id="contentPage4" style="margin-top: 80px;">
+                        
+                            <span class="fw-bold" style="font-family: Fraunces;font-size: 58px;">Cari Jenis Sampah?</span class="fw-bold">
+                            <span style="font-size: 26px;margin-left: 30px;margin-right:30px">Masih bingung membedakan jenis sampah? Coba cari disini!</span>
+                            
+                            <div class="main-white-button mt-2" style="width: 80%;">
+                                <div class="w-100 d-flex gap-2">
+                                    
+                                    <img src="assets/svg/search-icon.svg" style="width: 20px;">
+                                    <input type="text" class="form-control border-0" placeholder="Ketik Disini" id="searchDatatable">
+                                </div>
+                            </div>
+                            <span class="mt-2" style="font-size: 16px;margin-left: 30px;margin-right:30px"><i>Petunjuk : Ketikkan nama barang/sampah, lalu jenisnya akan muncul jika tersedia</i></span>
+                            <div class="row mt-3 table-responsive custom-table">
+                                <table id="tableSearching" class="table table-bordered table-striped text-center mt-3" style="background-color: white;width: 100% !important;margin-left:-10px; overflow-y: auto;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center text-nowrap" style="vertical-align: middle;">Nama Barang</th>
+                                            <th class="text-center text-nowrap" style="vertical-align: middle;">Jenis</th>
+                                            <th class="text-center" style="vertical-align: middle;">Deskripsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </center>
+                    <!-- <div class="row flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- <footer>
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-12 wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.25s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.25s; -moz-animation-delay: 0.25s; animation-delay: 0.25s;">
+                <p>© Copyright 2024 Ananda Fadhilah | All Rights Reserved.</p>
+                </div>
+            </div>
+            </div>
+        </footer> -->
+    </div>
+    <!-- Scripts -->
+    <script>
+        var dataSampah = [
+            {
+            "name": "Buah",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Sayur",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Sisa makanan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Daun",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Ranting pohon",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kertas",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Rotan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Bambu",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kotoran hewan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Nasi",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Cangkang Telur",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kayu",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Rumput",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kulit buah (kecuali yang kasar dan tajam)",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Ampas kopi",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Ampas teh",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Tepung",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Biji-bijian",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Sabut kelapa",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Tumbuhan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Tisu",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kardus",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Karton",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Wadah telur",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kulit bawang",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Tulang",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Bumbu dapur",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Beras",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Kertas pembungkus",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Tulang ",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Jeroan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Makanan",
+            "jenis": "Organik",
+            "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+            },
+            {
+            "name": "Plastik",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Sendok",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Peralatan dapur",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kain",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kawat",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Besi",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kresek",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Karet",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Gelas",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Pakaian bekas",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kasur",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Logam",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Botol",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Ban bekas",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Piring",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kabel",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Pipa",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Alumunium",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kaleng",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Bungkus makanan",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Styrofoam",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Pecahan kaca",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Kaset",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Paku",
+            "jenis": "Anorganik",
+            "deskripsi": "Merupakan jenis <b>sampah non-hayati</b>. Berasal dari pengolahan bahan sintetis maupun proses pengelolaan bahan tambang. Sampah jenis ini tidak dapat terurai secara alamiah.Pengelolaan sampah anorganik bisa dilakukan dengan penerapan prinsip 3R (Reduce, Reuse, Recycle)."
+            },
+            {
+            "name": "Pengharum ruangan",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Cairan pembersih",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Kamper",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Obat-obatan",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Oli",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Detergen",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Pembasmi serangga",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Sampah medis",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Barang elektronik",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Pemutih",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Lem",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Masker",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Wadah kosmetik",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Cat",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Baterai",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Lampu bekas",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Botol skincare",
+            "jenis": "B3",
+            "deskripsi": "B3 (Bahan Berbahaya dan Beracun)  Merupakan jenis sampah yang <b>berasal dari olahan zat kimia</b> organik, anorganik, maupun logam. Bersifat <b>mudah meledak, korosif, karsinogenik, dan dapat mengiritasi</b>. Beberapa contohnya seperti sampah medis, elektronik, detergen, dll. Sebaiknya tidak disatukan dengan sampah lainnya."
+            },
+            {
+            "name": "Popok bekas",
+            "jenis": "Residu",
+            "deskripsi": "Merupakan sampah yang <b>sulit untuk di daur ulang</b> kembali karena <b>keterbatasan teknologi dan sumber daya alam</b>. Contohnya lainnya seperti sampah kontaminasi, sampah komposit, plastik tipe 6 dan 7, serta tekstil.Penting untuk mengelola sampah residu dengan tepat melalui berbagai langkah, salah satunya yaitu pengurangan sampah dari sumbernya."
+            },
+            {
+            "name": "Pembalut bekas",
+            "jenis": "Residu",
+            "deskripsi": "Merupakan sampah yang <b>sulit untuk di daur ulang</b> kembali karena <b>keterbatasan teknologi dan sumber daya alam</b>. Contohnya lainnya seperti sampah kontaminasi, sampah komposit, plastik tipe 6 dan 7, serta tekstil.Penting untuk mengelola sampah residu dengan tepat melalui berbagai langkah, salah satunya yaitu pengurangan sampah dari sumbernya."
+            },
+            {
+            "name": "Platik multilayer",
+            "jenis": "Residu",
+            "deskripsi": "Merupakan sampah yang <b>sulit untuk di daur ulang</b> kembali karena <b>keterbatasan teknologi dan sumber daya alam</b>. Contohnya lainnya seperti sampah kontaminasi, sampah komposit, plastik tipe 6 dan 7, serta tekstil.Penting untuk mengelola sampah residu dengan tepat melalui berbagai langkah, salah satunya yaitu pengurangan sampah dari sumbernya."
+            },
+            {
+            "name": "Bahan tekstik",
+            "jenis": "Residu",
+            "deskripsi": "Merupakan sampah yang <b>sulit untuk di daur ulang</b> kembali karena <b>keterbatasan teknologi dan sumber daya alam</b>. Contohnya lainnya seperti sampah kontaminasi, sampah komposit, plastik tipe 6 dan 7, serta tekstil.Penting untuk mengelola sampah residu dengan tepat melalui berbagai langkah, salah satunya yaitu pengurangan sampah dari sumbernya."
+            },
+            {
+            "name": "Permen karet",
+            "jenis": "Residu",
+            "deskripsi": "Merupakan sampah yang <b>sulit untuk di daur ulang</b> kembali karena <b>keterbatasan teknologi dan sumber daya alam</b>. Contohnya lainnya seperti sampah kontaminasi, sampah komposit, plastik tipe 6 dan 7, serta tekstil.Penting untuk mengelola sampah residu dengan tepat melalui berbagai langkah, salah satunya yaitu pengurangan sampah dari sumbernya."
+            }
+        ]
+        
+        $(document).ready(function(){
+            $('#tableSearching').DataTable({
+                responsive: true,
+                // "sScrollY": "200px",
+                scrollX: true,
+                // searching: false,
+                // sDom: 'lrtip',
+                dom:
+                    "<'row'<'col-sm-12 'tr>>" +
+                    "<'row'<'col-sm-6 custom-show'i><'col-sm-6 custom-page'p>>",
+                data: dataSampah,
+                pagingType: 'simple_numbers',
+                columns: [
+                    { data: 'name' 
+                    },
+                    { data: 'jenis' ,
+                        render: function (data, type, full, meta){
+                            let color;
+                            if(data == "Anorganik") {
+                                color = '#F2AE01';
+                            } else if(data == "Organik") {
+                                color = '#65BA65';
+                            } else if(data == "Residu") {
+                                color = '#A99DB0';
+                            } else if(data == "B3") {
+                                color = '#D73509';
+                            }
+                            return `<span class="p-2 w-100 btn" style="cursor:auto; border-radius:15px; background-color:`+color+`">`+data+`</span>`
+                        }
+                    },
+                    { data: 'deskripsi' },
+                ]
+            });
+            
+            $('#searchDatatable').keyup(function(){
+                $('#tableSearching').DataTable().search($(this).val()).draw() ;
+            })
+        });
+    </script>
+    <script src="bootstrap/jquery/jquery.min.js"></script>
+    <script src="bootstrap/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/templatemo-custom.js"></script>
+    <!-- <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script> -->
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+</html>
